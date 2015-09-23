@@ -23,7 +23,7 @@
     "dev": "npm run server-dev"
   },
   "dependencies": {
-    "moveit": "0.0.10",
+    "moveit": "0.0.11",
     "react": "*"
   },
   "devDependencies": {
