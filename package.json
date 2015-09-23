@@ -1,0 +1,51 @@
+{
+  "name": "react-imageblurloader",
+  "version": "0.0.0",
+  "description": "Image loader using blur.",
+  "main": "lib/index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jide/react-imageblurloader.git"
+  },
+  "author": "Julien De Luca",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jide/react-imageblurloader/issues"
+  },
+  "homepage": "https://github.com/jide/react-imageblurloader",
+  "scripts": {
+    "test": "node node_modules/karma/bin/karma start karma.conf.js",
+    "test:watch": "./node_modules/karma/bin/karma start karma.conf.js --no-single-run",
+    "clean": "rimraf lib",
+    "build": "npm run clean && babel --stage 0 --ignore .spec.js src -d lib",
+    "server-dev": "webpack-dev-server --host 0.0.0.0 --port 3000 --config demo/webpack.config.dev.js --colors --content-base demo",
+    "server-test": "webpack-dev-server --host 0.0.0.0 --port 3001 --config webpack.config.test.js --colors",
+    "dev": "npm run server-dev"
+  },
+  "dependencies": {
+    "moveit": "0.0.10",
+    "react": "*"
+  },
+  "devDependencies": {
+    "babel": "*",
+    "babel-core": "*",
+    "babel-eslint": "*",
+    "babel-loader": "*",
+    "babel-runtime": "*",
+    "eslint": "*",
+    "eslint-config-defaults": "*",
+    "eslint-ecma-features": "*",
+    "eslint-plugin-filenames": "*",
+    "eslint-plugin-react": "*",
+    "jasmine": "*",
+    "json-loader": "*",
+    "karma": "*",
+    "karma-chrome-launcher": "*",
+    "karma-jasmine": "*",
+    "karma-spec-reporter": "*",
+    "karma-webpack": "*",
+    "rimraf": "*",
+    "webpack": "*",
+    "webpack-dev-server": "*"
+  }
+}
