@@ -7,7 +7,7 @@ const previewData = 'iVBORw0KGgoAAAANSUhEUgAAACYAAAAUCAIAAABu7dhfAAAAGXRFWHRTb2Z
 class App extends React.Component {
   render() {
     return (
-      <ImageBlurLoader width={ 300 } height={ 156 } src='/image.png' preview={ previewData }/>
+      <ImageBlurLoader width={ 1000 } height={ 520 } src='/image.png' preview={ previewData }/>
     );
   }
 }

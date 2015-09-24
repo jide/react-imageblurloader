@@ -14,15 +14,14 @@ export default class ImageBlurLoader extends Component {
   }
 
   static defaultProps = {
-    blur: 10,
+    blur: 30,
     animation: {
       keyframes: {
         to: {
-          WebkitFilter: ''
+          opacity: 0
         }
       },
-      ease: 'ease-in',
-      duration: '.5s'
+      duration: '.25s'
     }
   }
 
@@ -37,8 +36,7 @@ export default class ImageBlurLoader extends Component {
   }
 
   handleLoad() {
-    React.findDOMNode(this.refs.preview).style.visibility = 'hidden';
-    transition(React.findDOMNode(this.refs.image), this.props.animation);
+    transition(React.findDOMNode(this.refs.preview), this.props.animation);
   }
 
   render() {
@@ -56,20 +54,21 @@ export default class ImageBlurLoader extends Component {
       ...style
     };
 
-    const blurStyle = {
-      WebkitFilter: `blur(${this.props.blur}px)`
-    };
-
     const imageStyle = {
       position: 'absolute',
       ...sizeStyle
     };
 
+    const blurStyle = {
+      WebkitFilter: `blur(${this.props.blur}px)`,
+      ...imageStyle
+    };
+
     return (
       <div { ...props } style={ wrapperStyle }>
         <img style={ imageStyle } src={ `data:image/png;base64,${this.props.preview}` }/>
-        <img ref='image' style={ { ...imageStyle, ...blurStyle } } src={ this.props.src } onLoad={ this.handleLoad }/>
-        <img style={ { ...imageStyle, ...blurStyle } } src={ `data:image/png;base64,${this.props.preview}` } ref='preview'/>
+        <img ref='image' style={ imageStyle } src={ this.props.src } onLoad={ this.handleLoad }/>
+        <img style={ blurStyle } src={ `data:image/png;base64,${this.props.preview}` } ref='preview'/>
       </div>
     );
   }
