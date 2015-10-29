@@ -19,7 +19,7 @@ Show a nice blurry preview while your images are loading.
 
 ## Demo
 
-`npm run dev` then visit http://127.0.0.1:3000
+`npm start` then visit http://127.0.0.1:3000
 
 ## Generating previews
 
