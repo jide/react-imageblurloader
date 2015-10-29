@@ -11,6 +11,10 @@ module.exports = {
     filename: "bundle.js",
     libraryTarget: "commonjs2"
   },
+  externals: {
+    'react': 'react',
+    'react/addons': 'react'
+  },
   resolve: {
     extensions: ["", ".js", "jsx"]
   },
