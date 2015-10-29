@@ -68,8 +68,8 @@ export default class ImageBlurLoader extends Component {
       <div { ...props } style={ wrapperStyle }>
         <img style={ imageStyle } src={ this.props.src } onLoad={ this.handleLoad }/>
         <div ref='preview'>
-          <img style={ imageStyle } src={ `data:image/png;base64,${this.props.preview}` }/>
-          <img style={ blurStyle } src={ `data:image/png;base64,${this.props.preview}` }/>
+          <img style={ imageStyle } src={ `${this.props.preview}` }/>
+          <img style={ blurStyle } src={ `${this.props.preview}` }/>
         </div>
       </div>
     );
