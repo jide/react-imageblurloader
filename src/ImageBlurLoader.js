@@ -1,5 +1,4 @@
 import React, { Component, PropTypes } from 'react';
-import ReactDOM from 'react-dom';
 import { transition } from 'moveit';
 
 export default class ImageBlurLoader extends Component {
@@ -47,7 +46,7 @@ export default class ImageBlurLoader extends Component {
   }
 
   _getPreviewDOM() {
-    return  ReactDOM.findDOMNode(this.refs.preview);
+    return  this.refs.preview;
   }
 
   render() {
