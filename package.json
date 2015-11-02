@@ -23,8 +23,7 @@
   },
   "dependencies": {
     "moveit": "^0.0.11",
-    "react": "^0.14.1",
-    "react-dom": "^0.14.1"
+    "react": "^0.14.1"
   },
   "devDependencies": {
     "babel": "^5.8.29",
@@ -41,6 +40,7 @@
     "expect": "^1.12.2",
     "json-loader": "*",
     "mocha": "^2.3.3",
+    "react-dom": "^0.14.1",
     "react-addons-test-utils": "^0.14.1",
     "rimraf": "*",
     "testem": "^0.9.8",
