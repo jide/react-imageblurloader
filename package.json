@@ -23,7 +23,8 @@
   },
   "dependencies": {
     "moveit": "^0.0.11",
-    "react": "^0.14.1"
+    "react": "^0.14.1",
+    "react-dom": "^0.14.1"
   },
   "devDependencies": {
     "babel": "^5.8.29",
@@ -37,13 +38,12 @@
     "eslint-ecma-features": "*",
     "eslint-plugin-filenames": "*",
     "eslint-plugin-react": "*",
-    "expect": "1.12.2",
+    "expect": "^1.12.2",
     "json-loader": "*",
-    "mocha": "2.3.3",
-    "react-addons-test-utils": "0.14.1",
-    "react-dom": "^0.14.1",
+    "mocha": "^2.3.3",
+    "react-addons-test-utils": "^0.14.1",
     "rimraf": "*",
-    "testem": "0.9.8",
+    "testem": "^0.9.8",
     "webpack": "^1.12.2",
     "webpack-dev-server": "^1.12.1"
   }
