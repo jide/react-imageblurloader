@@ -1,5 +1,4 @@
 import React, { Component, PropTypes } from 'react';
-import ReactDOM from 'react-dom';
 import { transition } from 'moveit';
 
 export default class ImageBlurLoader extends Component {
