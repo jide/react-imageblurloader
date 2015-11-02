@@ -31,8 +31,8 @@ export default class ImageBlurLoader extends Component {
     this.handleLoad = ::this.handleLoad;
   }
 
-  shouldComponentUpdate() {
-    return false;
+  shouldComponentUpdate(nextProps) {
+    return this.props.src !== nextProps.src;
   }
 
   handleLoad() {
