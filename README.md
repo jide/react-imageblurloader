@@ -23,4 +23,4 @@ Show a nice blurry preview while your images are loading.
 
 ## Generating previews
 
-Using ImageMagick : `convert input.jpg -resize 20x20 -quality 0.7 preview.jpg`
+Using ImageMagick : `convert input.jpg -resize 20x20 -quality 70 preview.jpg`
