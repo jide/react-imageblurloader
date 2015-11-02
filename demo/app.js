@@ -1,17 +1,43 @@
 /*global document:false*/
 import React from 'react';
+import ReactDOM from 'react-dom';
 import ImageBlurLoader from '../src/ImageBlurLoader';
 
 const previewData = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACYAAAAUCAIAAABu7dhfAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyhpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMDY3IDc5LjE1Nzc0NywgMjAxNS8wMy8zMC0yMzo0MDo0MiAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTUgKE1hY2ludG9zaCkiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6RUFBNEVENjU1QTU3MTFFNUI2NTNCMEYwMzRBQzNCQzQiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6RUFBNEVENjY1QTU3MTFFNUI2NTNCMEYwMzRBQzNCQzQiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDpFQUE0RUQ2MzVBNTcxMUU1QjY1M0IwRjAzNEFDM0JDNCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDpFQUE0RUQ2NDVBNTcxMUU1QjY1M0IwRjAzNEFDM0JDNCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/Ps9xg7IAAAcJSURBVHjaZFZLjBxHGa5nP6dndmdnX17vztrr2JYdQwwOAWIIiEhIcEACgQgKJ4TghMQNJLgjgXJAXBASF0TggCIUggAZK5FBdhIb4xBnbePHvnd23tPv7npSMxvnQnV16+/qr/5XfX9Vwzt9rQHAcNyVkbS5AISAIGATQBGAAEzuw8cYYz5hNEbKx3ipAMFg2gav/Ob3P/rhd1Ni+46jAcTUA5i0dne+/JVv/eqXP0sVkNwgCajYY7QCIOUgY2MtCAKKgY3Hwtgj8P7TWDL2jENo4oE+7BPbSo0Bi0cXFqeq+0JxJSmypBBaGNNoFA8N0kNAWIAsV0EkwU/+eq0RBN9+9skZCoZyPNnER+D7YenH0RgP0CRuNIlYTwQzSIyMxyP9QT9jrBoEg6iQWiOoxt4TFCXhIZgacMnFj3/32qX1m/Vq9Y27t3/wxc9dWJgVH6TR6ILjl8OADtNrDODHJg9hH7SD3c1McCJN3BpOMoNNM5Z5gR5j0MvXNv589Y2mS+q2/tObV67c3QATpWiilwJgTboNgDPp9mN74P/sjVsRz1Z9xmVZcjheFI2wuUCW5u+2iv0MbA4YabjkqdXmo4cPncD9wtkLq8Hx1++LmCuEtcxSLsySQN/BdOwrMoJrYSZVXqq8EIzzKGZhyqUElDr1maA37EOozDiEY3+k5Bg4nmuPwuHl6xsLzbVk1CeOqH3pEy/eSP4Rt0YXP/zCwQDdftCt0z7jSVfPSkEMjyiBCuhSCAwVxmaNoZJSKq5hUYiSCRa4sDZVyTvJw3vvbQ5zhW3HtiHCGCJuZmFKqWoNWsKfxoKR63dfIrZ37jSXTcHin5c6m3LZhZvd9nYIPrtWWbGhLBAy0zimSjOmlcBEESyxbTQrowtI5jmKVFXvbT46iJ48vtYOo91+RDEhxDJcAcqiSk6DXwTlVJq45PlP/1Ex6QUO9Xi1kkxZlXTf/derRXTAzntvoRMaMQsI7DjYwsYcjEOWZQpDXERCSmT4agphJCEKivT+8vmVZuGz7ZujvChcyzFsty1LaavIhV1cb1CJICbNup8rUNrFHDm++R66dCP76gu8+f1AJfTkMx0ZHktke0gl1YZ1UlrQx4aNvMylebMxcT1gvBFI2rS+M1rJZHrlznY/SgPP0UpBU62IYKwHfRjFjZVViXcUubMrVxf8BcsuouK3L61u7c8uLlcAaXZGCdevktcq9DRa+8ZQCuUGthoXtuYNs0zQCGHChARRJEqasnuNjbvq6u7Wdi9yqeEcNJuPqWJDWqlEVqqaXzn7BMYlJ+dOVmdszwHqRjaaW1s5fmblDy8fdNpv5o477z1XWb/8+cX9JTRrKsWQs0ScQIdiWCbCtkAw5aYMYswWavRvv1b/vLOXEz32RSuMqATQ1DQXzITKUuDUx3soqCgie87bvVYmRuvvTP3l0vrO7lWv6rgVPD9qqmW4deL8pbsJu7zluKAcLDnwSCgeAZXHqaGynXG2tAKrczp41Ni6p4DHGm6l5DqJI4lBblIgyzTPPdfxfGenlfc1Wjrq4qc+s7bZ3jvo6lylObyTs/aRlfxjH2+U8sCyHzi16OlnK6fPptDMQ3W/CiRJc0zXTvnnT03XA3pq0VuZ9V75Kbp9M0tRMUzLKMlNyZZcESKJK5wpAiz5xCdpv9t6sB6Z6ibVZpvveWWmP/XRmW9+TceMayE1iXb67RlbLwVT/dTv5VULZkNnL0EciErzKMWOitzs3If8OnC2t+A7V9u32x3t56wQjQbxfJBlujajFCpxBQzjfGUVDCP30utlP0nhrZ2LSnDfc07Oma0174KCAdKNQ79iV6EhAN3riTI1O0ohHO25NB2YGmVRBJJIVOpqIOW1v6fr16xaVSMVd/e062tbW60Wg17RjzOea4r96iKTdg3ZBBoCf/3F2rGTVWiLvTBKoA6ZOGiz4R4rE92PwE43z8oSCB5GAHvI8ki3K27d6GHsmKxu/zu98VbGET9/EcWI8VTO1GcfdHomt0zoTGSQGK5qTfDGo9yuy/qZ+mA3I9ONxYIXWSE6A+5lOst4FEGzCrliGklqm0kiVxJbVtgpe/vSIni6ZlUDgj0IHHR02qGu4xcwyFCCy14xSmJWDGWjem5tfs5zwpa1dX9rEzGgysZgW8bdGH/ne6fNMeqKJap42M1Vjggg9QWahuXDW7E5gFaX7fqMXa/R3nYhEthchtPT1Bx7QOgilzrnkMm5ueCZpxsEaAFLn8i8rzqdOAyRBY43j5yIo+LYkTNnjjw3U86t+PNk0D9wUm+Ytfb2Rt22pARTS86HchQKzRHK9cZ/Uq9GkzA1CVqc9zuPikFYeJ6KYnPaI8G1+YUxFd/eSX0Eluse4LI+FTg+iPuJA/YXj8Hlj8zyhOTpfx3qe5bzPwEGAAbfD+riAi9gAAAAAElFTkSuQmCC';
+const previewData2 = 'data:image/png;base64,/9j/4AAQSkZJRgABAQIAHAAcAAD/2wBDAAMCAgICAgMCAgIDAwMDBAYEBAQEBAgGBgUGCQgKCgkICQkKDA8MCgsOCwkJDRENDg8QEBEQCgwSExIQEw8QEBD/2wBDAQMDAwQDBAgEBAgQCwkLEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBD/wAARCAALABQDAREAAhEBAxEB/8QAGAAAAgMAAAAAAAAAAAAAAAAAAAUCBAj/xAAkEAABAwMDBAMAAAAAAAAAAAABAgMEAAURBhIhBxNBUTFhof/EABoBAAICAwAAAAAAAAAAAAAAAAECBAUDBgf/xAApEQABBAEBBAsAAAAAAAAAAAABAAIDEQQSBhMx0QUUFiEiUXGBobHB/9oADAMBAAIRAxEAPwDS2l+slstNrt2nINhkoiRWgyyHnO44QB7KuVE+fZrT8LarD3ohhY8E916hX0raKaWmx6RXur8Pqrc9MypMC9adky0reU8y7FX3QhBwNiieSQR+1I6W2hbgsbvnHxeVfpUgzbp1BtpgjrnpkpG+2XVCvKTF+KpO2MQ4F3xzTdZiPFqLPdZjMVtDHYaSOMNxm08Z+k1w6dlP1Wb9TzTUFJMGHb2VuQY6GFPqCnC2Nu44HJxTTZ2TnPByZC+uFm0KASuXLkId2BzhIwMgGsjI2kWiv//Z';
 
 class App extends React.Component {
+  constructor(...args) {
+    super(...args);
+
+    this.state = {
+      src: 'image.png',
+      preview: previewData
+    };
+  }
+
+  update = () => {
+    const nextState = this.state.src === 'image.png' ? {
+      src: 'image2.png',
+      preview: previewData2
+    } : {
+      src: 'image.png',
+      preview: previewData
+    };
+
+    this.setState(nextState);
+  }
+
   render() {
     return (
-      <ImageBlurLoader width={ 1000 } height={ 520 } src='/image.png' preview={ previewData }/>
+      <div>
+        <button onClick={ this.update }>Change image</button>
+        <ImageBlurLoader width={ 1000 } height={ 520 } src={ this.state.src } preview={ this.state.preview }/>
+      </div>
     );
   }
 }
 
 const content = document.getElementById('content');
 
-React.render(<App/>, content);
+ReactDOM.render(<App/>, content);

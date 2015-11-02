@@ -17,6 +17,9 @@ export default class ImageBlurLoader extends Component {
     blur: 30,
     animation: {
       keyframes: {
+        from: {
+          opacity: 1
+        },
         to: {
           opacity: 0
         }
@@ -32,11 +35,16 @@ export default class ImageBlurLoader extends Component {
   }
 
   shouldComponentUpdate(nextProps) {
-    return this.props.src !== nextProps.src;
+    return this.props.src !== nextProps.src ||
+      this.props.preview !== nextProps.preview;
+  }
+
+  componentWillUpdate() {
+    this.refs.preview.style.opacity = 1;
   }
 
   handleLoad() {
-    transition(React.findDOMNode(this.refs.preview), this.props.animation);
+    transition(this.refs.preview, this.props.animation);
   }
 
   render() {
