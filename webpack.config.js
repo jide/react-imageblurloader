@@ -1,42 +1,52 @@
-"use strict";
+'use strict';
 
-var webpack = require("webpack");
-var path = require("path");
+var webpack = require('webpack');
+var path = require('path');
+
+let babelPlugins = '',
+    externals = {
+      'react': 'react',
+      'moveit': 'moveit',
+      'react-dom': 'react-dom'
+    },
+    plugins = [
+      new webpack.optimize.DedupePlugin(),
+      new webpack.optimize.UglifyJsPlugin({
+        compress: {
+          warnings: false
+        }
+      }),
+      new webpack.DefinePlugin({
+        'process.env.NODE_ENV': JSON.stringify('production')
+      })
+    ];
+
+if (process.env.NODE_ENV === 'test') {
+  externals = {};
+  plugins = [];
+  babelPlugins = '?plugins=rewire';
+}
 
 module.exports = {
   cache: true,
-  entry: path.join(__dirname, "src/index.js"),
+  entry: path.join(__dirname, 'src/index.js'),
   output: {
     path: path.join(__dirname, "lib"),
     filename: "bundle.js",
-    libraryTarget: "commonjs2"
+    libraryTarget: "umd"
   },
-  externals: {
-    'react': 'react',
-    'moveit': 'moveit',
-    'react-dom': 'react-dom'
-  },
+  externals: externals,
   resolve: {
-    extensions: ["", ".js", "jsx"]
+    extensions: ['', '.js', 'jsx']
   },
   module: {
     loaders: [
       {
         test: /\.jsx?$/,
         exclude: [/node_modules/],
-        loader: "babel-loader?optional[]=runtime&stage=0"
+        loader: 'babel' + babelPlugins
       }
     ]
   },
-  plugins: [
-    new webpack.optimize.DedupePlugin(),
-    new webpack.optimize.UglifyJsPlugin({
-      compress: {
-        warnings: false
-      }
-    }),
-    new webpack.DefinePlugin({
-      "process.env.NODE_ENV": JSON.stringify("production")
-    })
-  ]
+  plugins: plugins
 };
