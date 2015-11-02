@@ -13,7 +13,7 @@ module.exports = {
   },
   externals: {
     'react': 'react',
-    'react/addons': 'react'
+    'react-dom': 'react-dom'
   },
   resolve: {
     extensions: ["", ".js", "jsx"]
