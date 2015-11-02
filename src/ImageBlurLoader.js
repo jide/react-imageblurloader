@@ -35,8 +35,18 @@ export default class ImageBlurLoader extends Component {
     return this.props.src !== nextProps.src;
   }
 
+  componentWillUpdate() {
+    // reset initial blur opacity when src changes
+   this._getPreviewDOM().style.opacity = 1;
+  }
+
   handleLoad() {
-    transition(React.findDOMNode(this.refs.preview), this.props.animation);
+    // src loaded, transition the blur
+    transition(this._getPreviewDOM(), this.props.animation);
+  }
+
+  _getPreviewDOM() {
+    return  this.refs.preview;
   }
 
   render() {
