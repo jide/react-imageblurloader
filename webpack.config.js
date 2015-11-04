@@ -6,8 +6,7 @@ var path = require('path');
 let babelPlugins = '',
     externals = {
       'react': 'react',
-      'moveit': 'moveit',
-      'react-dom': 'react-dom'
+      'moveit': 'moveit'
     },
     plugins = [
       new webpack.optimize.DedupePlugin(),
