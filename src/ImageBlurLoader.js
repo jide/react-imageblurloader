@@ -24,7 +24,7 @@ export default class ImageBlurLoader extends Component {
           opacity: 0
         }
       },
-      duration: '.25s'
+      duration: '.5s'
     }
   }
 
@@ -49,11 +49,20 @@ export default class ImageBlurLoader extends Component {
   }
 
   render() {
-    const { src, preview, style, ...props } = this.props;
+    const {
+      width,
+      height,
+      src,
+      preview,
+      blur,
+      style,
+      animation,
+      ...props
+    } = this.props;
 
     const sizeStyle = {
-      width: this.props.width,
-      height: this.props.height
+      width,
+      height
     };
 
     const wrapperStyle = {
