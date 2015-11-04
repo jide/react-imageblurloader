@@ -44,6 +44,7 @@ export default class ImageBlurLoader extends Component {
   }
 
   handleLoad() {
+    // src loaded, transition the blur
     transition(this.refs.preview, this.props.animation);
   }
 

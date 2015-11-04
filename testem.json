@@ -1,0 +1,13 @@
+{
+    "framework": "mocha",
+    "serve_files": ["tests.js"],
+    "src_files": [
+        "./src/*.js"
+    ],
+    "before_tests": "NODE_ENV=test ./node_modules/.bin/webpack --devtool source-map --config ./webpack.config.js --output-path . --output-filename tests.js --entry ./src/*.spec.js",
+    "on_exit": "rm tests.js*",
+    "launch_in_dev": [ "Chrome" ],
+    "launch_in_ci": [ "Chrome" ]
+
+}
+
