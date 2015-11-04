@@ -40,7 +40,7 @@
     "expect": "^1.12.2",
     "json-loader": "*",
     "mocha": "^2.3.3",
-    "react-dom": "^0.14.1",
+    "react-dom": "^0.14.2",
     "react-addons-test-utils": "^0.14.1",
     "rimraf": "*",
     "testem": "^0.9.8",
