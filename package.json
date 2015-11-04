@@ -1,6 +1,6 @@
 {
   "name": "react-imageblurloader",
-  "version": "0.0.13",
+  "version": "0.0.14",
   "description": "Image loader using blur.",
   "main": "lib/bundle.js",
   "repository": {
