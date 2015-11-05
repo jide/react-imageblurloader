@@ -10,7 +10,8 @@ export default class ImageBlurLoader extends Component {
     preview: PropTypes.string.isRequired,
     blur: PropTypes.number,
     style: PropTypes.object,
-    animation: PropTypes.object
+    animation: PropTypes.object,
+    onLoad: PropTypes.func
   }
 
   static defaultProps = {
@@ -46,6 +47,10 @@ export default class ImageBlurLoader extends Component {
   handleLoad() {
     // src loaded, transition the blur
     transition(this.refs.preview, this.props.animation);
+
+    if (this.props.onLoad) {
+      this.props.onLoad();
+    }
   }
 
   render() {
@@ -57,6 +62,7 @@ export default class ImageBlurLoader extends Component {
       blur,
       style,
       animation,
+      onLoad,
       ...props
     } = this.props;
 
