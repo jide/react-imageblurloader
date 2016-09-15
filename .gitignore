@@ -32,3 +32,4 @@ node_modules
 bower_components
 .tmp
 npm-debug.log
+lib
