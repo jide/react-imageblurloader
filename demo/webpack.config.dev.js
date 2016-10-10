@@ -29,7 +29,7 @@ module.exports = {
       {
         test: /\.js$/,
         exclude: [/node_modules/],
-        loaders: ["babel-loader?optional[]=runtime&stage=0"]
+        loaders: ["babel-loader"]
       },
       {
         test: /\.json$/,

@@ -32,7 +32,9 @@ class App extends React.Component {
     return (
       <div>
         <button onClick={ this.update }>Change image</button>
-        <ImageBlurLoader width={ 1000 } height={ 520 } src={ this.state.src } preview={ this.state.preview }/>
+        <div style={ { width:640, height: 400 } }>
+          <ImageBlurLoader width='100%' height='100%' src={ this.state.src } preview={ this.state.preview }/>
+        </div>
       </div>
     );
   }
