@@ -4,8 +4,14 @@ import { transition } from 'moveit';
 export default class ImageBlurLoader extends Component {
 
   static propTypes = {
-    width: PropTypes.number.isRequired,
-    height: PropTypes.number.isRequired,
+    width: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.number
+    ]),
+    height: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.number
+    ]),
     src: PropTypes.string.isRequired,
     preview: PropTypes.string.isRequired,
     blur: PropTypes.number,
