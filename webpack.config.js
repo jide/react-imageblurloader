@@ -23,7 +23,6 @@ let babelPlugins = '',
 if (process.env.NODE_ENV === 'test') {
   externals = {};
   plugins = [];
-  babelPlugins = '?plugins=rewire';
 }
 
 module.exports = {
